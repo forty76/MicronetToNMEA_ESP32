@@ -11,7 +11,7 @@ The project requires the following hardware :
 
 Teensy 4.0 is the preferred board because it is the one used by the author to test and fix issues when they are found. Other boards are reported to also work fine anyway.
 
-Optionally, you can add :
+Optionally, you can add (removed in ESP32 version):
 - A NMEA GPS/GNSS, connected through UART to add your position, time, date, SOG and COG to Micronet displays. The most frequently used one is UBlox M8N which can be directly configured by MicronetToNMEA.
 - A LSM303DLH(C), connected through I2C to add magnetic heading to Micronet displays
 
@@ -45,42 +45,22 @@ Check the [User Manual](https://github.com/Rodemfr/MicronetToNMEA/blob/master/do
 
 ## Setting up HW
 
-Supposing you use a Teensy 3.5 board, the SW is configured by default to be connected via SPI bus to a CC1101 IC with the following scheme :
+Supposing you use a ESP32 wroom devkit board, the SW is configured by default to be connected via SPI bus to a CC1101 IC with the following scheme :
 
 ```
 CC1101     Teensy
-SI     <-- Pin 11 (MOSI0)
-SO     --> Pin 12 (MISO0)
-SCK    <-- Pin 14 (SCK0)
-CS     <-- Pin 10 (CS0)
-GD0    --> Pin 24
+SI     <-- Pin 23 (MOSI0)
+SO     --> Pin 19 (MISO0)
+SCK    <-- Pin 18 (SCK0)
+CS     <-- Pin 5 (CS0)
+GD0    --> Pin 27
 GND    <-> GND
 3.3V   <-- 3.3V
 ```
 
-MicronetToNMEA can also collect sentences from an NMEA GPS/GNSS connected to UART 1 of the board :
+On start add SPI pin report on serial monitor
 
-```
-GNSS     Teensy
-TXD  --> Pin 0  (RX1)
-RXD  <-- Pin 1  (TX1)
-GND  <-> GND
-3.3V <-- 3.3V
-```
 
-Nothing is to be done on the SW side wether a GNSS is connected or not. If the GNSS is connected, it must be configured to output a NMEA stream at 9600 baud. I use a Ublox NEO-M8N. Neo-M8N can be configured to output a NMEA stream at this baudrate by using [U-Center software from U-Blox](https://www.u-blox.com/en/product/u-center) or by enabling a dedicated option in BoardConfig.h which will enable automatic configuration.
-
-MicronetToNMEA can use a LSM303DLH(C) to provide magnetic heading on both Micronet and NMEA streams :
-
-```
-LSM303DLH(C)    Teensy
-SCL         <-- Pin 37  (SCL1)
-SDA         <-> Pin 38  (SDA1)
-GND         <-> GND
-3.3V        <-- 3.3V
-```
-
-Both LSM303DLH and LSM303DLHC can be used. MicronetToNMEA will automatically recognize it and select the appropriate driver.
 
 If you want to use a different MCU board and/or pinout, you have to edit the related definitions at the beginning of BoardConfig.h file. [User Manual](https://github.com/Rodemfr/MicronetToNMEA/blob/master/doc/user_manual/user_manual.md) explains every configuration item.
 
