@@ -76,10 +76,8 @@ void BlinkTask(void *parameter) {
   for (;;) { // Infinite loop
     if (dt = true)
     {
-        //CONSOLE.print("1");
-        gRfReceiver.RfIsr();        
-        dt=false;
-        //Serial.printf("Task1 Stack Free: %u bytes\n", uxTaskGetStackHighWaterMark(NULL));
+      gRfReceiver.RfIsr();        
+      dt=false;     
     }
     vTaskDelay(500 / portTICK_PERIOD_MS);
   }
