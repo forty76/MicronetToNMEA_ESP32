@@ -2,14 +2,12 @@
 
 ## Description
 
-MicronetToNMEA is a Teensy/Arduino project aiming at converting data from Raymarine's wireless network called "Micronet" to a standard NMEA0183 stream, easily useable by your laptop or tablet software. Additionnaly, it can also transmit NMEA navigation data from your Tablet/PC to your Micronet network.
+MicronetToNMEA_ESP32 is a ESP32/Arduino project aiming at converting data from Raymarine's wireless network called "Micronet" to a standard NMEA0183 stream, easily useable by your laptop or tablet software. Additionnaly, it can also transmit NMEA navigation data from your Tablet/PC to your Micronet network.
 
 The project requires the following hardware :
 - A boat with Raymarine Wireless/Tacktick system. (The boat is not strictly required)
-- A Teensy 3.5, 3.6, 4.0 or 4.1 board.
+- A ESP32 board.
 - A CC1101 based board. Any board should be fine as long as you can connect its SPI bus to the MCU. Take care to order a board with an antenna for 868 or 915MHz operations, not 433MHz.
-
-Teensy 4.0 is the preferred board because it is the one used by the author to test and fix issues when they are found. Other boards are reported to also work fine anyway.
 
 Optionally, you can add (removed in ESP32 version):
 - A NMEA GPS/GNSS, connected through UART to add your position, time, date, SOG and COG to Micronet displays. The most frequently used one is UBlox M8N which can be directly configured by MicronetToNMEA.
